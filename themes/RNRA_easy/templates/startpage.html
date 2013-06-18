@@ -1,0 +1,42 @@
+{use_macro file="Dataface_Main_Template.html"}
+    {fill_slot name="html_title"}Water MIS{/fill_slot}
+    {fill_slot name="custom_javascripts"}
+        <!-- jQuery library (served from Google) -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <!-- bxSlider Javascript file -->
+        <script src="js/bxslider/jquery.bxslider.min.js"></script>
+        <script type ="text/javascript" src="js/blc_startpage.js"></script>
+        <script type="text/javascript" src="js/DataTables/media/js/jquery.dataTables.js"></script>
+        <style type="text/css">
+            @import "js/DataTables/media/css/jquery.dataTables.css";
+        </style>
+        
+        {define_slot name="JSON_parse"}{/define_slot}
+    {/fill_slot}
+    {fill_slot name="main_column"}
+    <!-- show all messages -->
+    {if $ENV.APPLICATION_OBJECT->numMessages() > 0 }
+            {block name="before_message"}
+            <div class="portalMessage">
+                    <ul>
+                    {block name="message"}
+                    {foreach from=$ENV.APPLICATION_OBJECT->getMessages() item="msg"}
+                            <li>{$msg|nl2br}</li>
+                    {/foreach}
+                    </ul>
+            </div>
+            {block name="after_message"}
+    {/if}
+
+    <h1 id="startpage_title">{define_slot name="startpage_title"}Default Startpage{/define_slot}</h1>
+    <p id="startpage_intro">
+       {define_slot name="startpage_intro"}This is a default introduction. If you can read any default content
+       on this site, the template was not loaded properly. Please refere to a system administrator!{/define_slot}
+    </p>
+    
+    <div class="default_balance">
+        {define_slot name="default_balance"}{/define_slot}
+    </div>
+    {define_slot name="startpage_edit"}{/define_slot}
+    {/fill_slot}
+{/use_macro}
