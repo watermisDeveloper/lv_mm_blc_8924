@@ -112,10 +112,10 @@ class conf_ApplicationDelegate {
         if (isset($user) && ($user->val('Role') == 'admin_data' || $user->val('Role') == 'admin_system')){
             echo "<li><a href='".$app->url('-table=mis_users&-action=list')."'><img src='images/s_users.png' alt='users' />
                     <span>Users</span></a></li>";
-/*            if ($query['-action'] !== 'startSync'){
+            if ($query['-action'] !== 'startSync'){
                 echo "<li><a href='".$app->url('-action=startSync')."'><img src='images/s_sync.png' alt='sync' />
                         <span>Sync</span></a></li>";
-            }  */
+            }  
         }
         
         /* help button for everyone */

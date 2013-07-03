@@ -155,7 +155,39 @@ function BalanceRenderer(obj, DOMLocation, resources, demands, meta){
     };
     
     this.selectedResource = resources[this.getResIndex()];
+}
 
-
-
+function printSelectedCatchment(index){
+    /* Empty Fields */
+    $('#hydro_year').html('Select the hydrological year for the Balance: <br/>');
+    $('#balance_ds_code').html('Select the Balance Dataset: <br/>');
+    
+    if (parseInt(db_balances[index]['rsc_sets']) === 0){
+        var nb_rsc = "<span style='color:red; font-weight:bold;'>"+db_balances[index]['rsc_sets']+" Resources Sets</span>";
+    }
+    else {
+        var nb_rsc = "<span style='color:green; font-weight:bold;'>"+db_balances[index]['rsc_sets']+" Resources Sets</span>";
+    }
+    
+    if (parseInt(db_balances[index]['dmnd_sets']) === 0){
+        var nb_dmnd = "<span style='color:red; font-weight:bold;'>"+db_balances[index]['dmnd_sets']+" Demand Scenarios</span>";
+    }
+    else {
+        var nb_dmnd = "<span style='color:green; font-weight:bold;'>"+db_balances[index]['dmnd_sets']+" Demand Scenarios</span>";
+    }
+    
+    /* Draw the Info Box*/
+    $('#info_box').html('The XX Catchment has '+nb_rsc+' and '+ nb_dmnd + ' related to it');
+    
+    $.each(db_balances, function(i,bal){
+        if (db_balances[index]['nb_code'] == bal['nb_code']){
+            $('#hydro_year').html( $('#hydro_year').html() + 
+                    "<input type='radio' name='hydro_year' value='"+bal['hydro_year']+"' />"+bal['hydro_year']+"<br/>");
+        }
+        if (db_balances[index]['nb_code'] == bal['nb_code']){
+            $('#balance_ds_code').html( $('#balance_ds_code').html() + 
+                    "<input type='radio' name='balance_ds_code' value='"+bal['balance_ds_code']+"' />"+bal['balance_ds_code']+"<br/>");
+        }
+ 
+    });
 }
