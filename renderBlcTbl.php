@@ -29,19 +29,19 @@ echo "<script type='text/javascript'>";
 echo " var resources = new Array(); var demand = new Array();";
 while (($row = mysql_fetch_assoc($balance_data_result)) !== FALSE){
     if ($row['in_out'] === 'resources'){
-        echo " resources.push(".  json_encode(array($row['in_out'],$row['type'],$row['Hyr_m9'],$row['Hyr_m10'],
+        echo " resources.push(".  json_encode(array($row['in_out'],$row['type'],$row['Hyr_m10'],
             $row['Hyr_m11'],$row['Hyr_m12'],$row['Hyr_m1'],$row['Hyr_m2'],$row['Hyr_m3'],$row['Hyr_m4'],
-            $row['Hyr_m5'],$row['Hyr_m6'],$row['Hyr_m7'],$row['Hyr_m8'])).");";
+            $row['Hyr_m5'],$row['Hyr_m6'],$row['Hyr_m7'],$row['Hyr_m8'],$row['Hyr_m9'])).");";
     }
     elseif ($row['in_out'] === 'demand') {
-        echo " demand.push(".  json_encode(array($row['in_out'],''.$row['type'].' '.$row['hydro_year_of_demand'],$row['Hyr_m9'],$row['Hyr_m10'],
+        echo " demand.push(".  json_encode(array($row['in_out'],''.$row['type'].' '.$row['hydro_year_of_demand'],$row['Hyr_m10'],
             $row['Hyr_m11'],$row['Hyr_m12'],$row['Hyr_m1'],$row['Hyr_m2'],$row['Hyr_m3'],$row['Hyr_m4'],
-            $row['Hyr_m5'],$row['Hyr_m6'],$row['Hyr_m7'],$row['Hyr_m8'])).");";
+            $row['Hyr_m5'],$row['Hyr_m6'],$row['Hyr_m7'],$row['Hyr_m8'],$row['Hyr_m9'])).");";
     } 
 }
  echo 'meta={"hydro_year":"'.$hydro_year.'","nb_code":"'.$nb_code.'"};';
 echo "</script>";
-echo "<div style='width:940px; overflow:auto; margin-top: 50px; margin-bottom 50px;' id='blc_view'>";
+echo "<div style='width:940px; overflow:auto; margin-top: 10px; margin-bottom 50px;' id='blc_view'>";
 echo "</div>";
 
 ?>

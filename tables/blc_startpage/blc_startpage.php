@@ -89,6 +89,11 @@ class tables_blc_startpage {
                 "From `vw_rsrc_dmnd` group by `balance_ds_code`,`hydro_year`,`nb_code`";
         $result = mysql_query($query, df_db());
         
+/*
+ * Old Balance selector, may be reactivated as there are more than one hyd. Year and
+ * blance type availible
+ * 
+ * 
         echo "<form action='{$_SERVER['PHP_SELF']}' method='post'><table style='width:100%;text-align:center;'><tr>";
         echo "<td><select onchange='printSelectedCatchment(selectedIndex);' name='nb_code'>";
         while (($row = mysql_fetch_assoc($result)) !== FALSE){
@@ -103,7 +108,19 @@ class tables_blc_startpage {
         echo "</form>";
         echo "<script type='text/javascript'>db_balances = ".json_encode($data).
                 ";printSelectedCatchment(0);</script>";
-        
+ */
+        echo "<p id='info_box'></p>";
+        echo "<form action='{$_SERVER['PHP_SELF']}' method='post'>";
+        echo "<select onchange='printSelectedCatchment(selectedIndex);' name='nb_code'>";
+        while (($row = mysql_fetch_assoc($result)) !== FALSE){
+           echo "<option value='{$row['nb_code']}'>{$row['nb_code']}</option>";
+           $data[] = $row;
+        }
+        echo "</select>";
+        echo "<input type='submit' value='Load Catchment' />";
+        echo "</form>";
+        echo "<script type='text/javascript'>db_balances = ".json_encode($data).
+                ";printSelectedCatchment(0);</script>";
     }
     
     /** 

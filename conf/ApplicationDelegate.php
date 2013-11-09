@@ -61,12 +61,13 @@ class conf_ApplicationDelegate {
           $app->addHeadContent('<link rel="stylesheet" type="text/css" href="themes/style.css"/>'); 
       }
       
-          /**
+    /**
      * Depending on the actual logged in user role and the called table, a 
      * proper sidebar is created. In order to make it easy and useable only links
      * should be shown, the user is allowed to use.
      * 
-     * @version 1.0
+     * @deprecated since version 1.1
+     * @version 1.1
      * @author Mirko Maelicke <mirko@maelicke-online.de>
      */
     function block__sidebar(){
@@ -75,11 +76,8 @@ class conf_ApplicationDelegate {
         $query =& $app->getQuery();
         $user =& $auth->getLoggedInUser();
         
-        //$hierachy = array();
-        //create a hierachy list
-        //$get_query = df_query('select role_name, hierachy from mis_users_role_hierachy');
-        //while ($row = mysql_fetch_row($get_query)){$hierachy[$row[0]]= $row[1]; }
-        echo "<ul>";
+        /* sidebar is invisble by default */
+        echo "<ul style='display: none;'>";
         /* include at least back and home button */
         if (isset($_SESSION['backlink'])){
             echo "<li><a href='".$_SESSION['backlink']."'><img src='images/s_back.png' alt='back' />
@@ -88,27 +86,6 @@ class conf_ApplicationDelegate {
         echo "<li><a href='index.php?-table=blc_startpage'><img src='images/s_home.png' alt='Home' /><span>Start
             </span></a></li>";
         
-/*        if (isset($query['-table']) && $query['-table'] !== 'startpage' ){
-            if (isset($user) && $hierachy[$user->val('Role')] >= $hierachy[$table_role->val('role_name_maxprv')]){
-                
-                if ($query['-action'] !== 'startSync'){
-                    echo "<li><a href='".$app->url('-action=new')."'><img src='images/s_new.png' alt='new' />
-                        <span>new</span></a></li>";
-                }
-                if ($query['-action'] == 'view'){
-                    echo "<li><a href='".$app->url('-action=edit')."'><img src='images/s_edit.png' alt='edit' />
-                    <span>edit</span></a></li>";
-                }
-            }
-            if (isset($user) && $hierachy[$user->val('Role')] >= $hierachy[$table_role->val('role_name_minprv')]){
-                if ($query['-action'] == 'view'){
-                    echo "<li><a href='index.php?-table=".$query['-table']."&-action=list'>
-                        <img src='images/s_show.png' alt='show' /><span>all</span></a></li>";
-                }
-            }
-         
-        }
- */
         if (isset($user) && ($user->val('Role') == 'admin_data' || $user->val('Role') == 'admin_system')){
             echo "<li><a href='".$app->url('-table=mis_users&-action=list')."'><img src='images/s_users.png' alt='users' />
                     <span>Users</span></a></li>";
@@ -150,6 +127,29 @@ class conf_ApplicationDelegate {
         }
         echo "<h1>  </h1>";
     }
+    
+    /**
+     * insert the popup link and content into the page as the popup folder 
+     * contained a popup named after the actual table or a given -popup name.
+     */
+    function block__popup_link(){
+        if (isset($_GET['-popup'])){
+            $filename = "{$_GET['-popup']}.html";
+        }
+        elseif (isset($_GET['-table'])){
+            $filename = "{$_GET['-table']}.html";
+        }
+        else {
+            $filename = 'blc_startpage.html';
+        }
+        if (file_exists("popup/".$filename)){
+            $content = htmlentities(str_replace("\"", "'",file_get_contents("popup/".$filename)), ENT_QUOTES);
+            echo "<a href='javascript:popup(\"$content\");' style='float:left; margin-left: 1em'>".
+                    "<img src='images/s_help.png' alt='help' width='24' height='24'/>".
+                    "<span style='margin-left: 1em;'>Help for this Page</span></a>";                          
+        }
+    }
+    
 }
 
 

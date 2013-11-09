@@ -35,7 +35,7 @@ ul#table_selection_tabs {
 }
 
 #main_column {
-    width: 940px !important;
+    /*max-width:  940px !important;*/
 }
 
 ul#record_tabs {
@@ -51,7 +51,7 @@ div#selected-actions {
 }
 
 table#main_table {
-    width: 940px !important;
+    /*max-width: 940px !important;*/
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -62,7 +62,7 @@ table#main_table {
 }
 
 div.page {
-    width: 1000px;
+    max-width: 1000px;
     margin-left: auto;
     margin-right: auto; 
     border: 1px solid rgb(238,238,238);

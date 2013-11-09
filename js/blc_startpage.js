@@ -73,8 +73,7 @@ function BalanceRenderer(obj, DOMLocation, resources, demands, meta){
             "aaData":data,
             "aoColumns": [
                 {'sTitle':'Data type','bVisible':false},
-                {'sTitle':'Type','sClass':'blc_th'},
-                {'sTitle':'September'},
+                {'sTitle':'Type','sClass':'blc_th'},  
                 {'sTitle':'October'},
                 {'sTitle':'November'},
                 {'sTitle':'December'},
@@ -85,7 +84,8 @@ function BalanceRenderer(obj, DOMLocation, resources, demands, meta){
                 {'sTitle':'May'},
                 {'sTitle':'June'},
                 {'sTitle':'July'},
-                {'sTitle':'August'}
+                {'sTitle':'August'},
+                {'sTitle':'September'}
             ],
             "bFilter": false,
             "bSort":false,
@@ -191,3 +191,25 @@ function printSelectedCatchment(index){
  
     });
 }
+
+/**
+ * Opens a html based information popup in front of the watermis application
+ * explaning the use of startpage openlayers map.
+ * 
+ * author Mirko Maelicke <mirko@maelicke-online.de>
+ */
+function popup(content){
+    $('#popup_wrapper').html(""+
+            "<div id='popup' style='width: 60%; height: 80%; top: 10%; margin-left: auto; margin-right: auto; padding: 10px;"+
+            " border: 1px solid black; background-color: white; overflow-y: auto; position: relative; border-radius: 15px'>"+
+            "<a href='javascript:$(\"#popup_wrapper\").css(\"display\",\"none\")'"+
+            "id='close_wrapper' style='float: right; margin-right: 0.5em; font-size: 220%; color: red; cursor: pointer;'>X</a>"+
+            "<p style='margin: 2px;'>"+content+"</p>"+
+            "</div>"
+    );
+    $('#popup_wrapper').css('display','block');
+}
+
+    $('#close_wrapper').click(
+            $('#popup_wrapper').css('display', 'none')
+        );

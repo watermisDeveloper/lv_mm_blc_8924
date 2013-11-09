@@ -27,16 +27,18 @@
             </div>
             {block name="after_message"}
     {/if}
-
-    <h1 id="startpage_title">{define_slot name="startpage_title"}Default Startpage{/define_slot}</h1>
-    <p id="startpage_intro">
+    
+    
+    <!-- disable Title and intro by default -->
+    <h1 id="startpage_title" style="display: none;">{define_slot name="startpage_title"}Default Startpage{/define_slot}</h1>
+    <p id="startpage_intro" style="display: none;">
        {define_slot name="startpage_intro"}This is a default introduction. If you can read any default content
        on this site, the template was not loaded properly. Please refere to a system administrator!{/define_slot}
     </p>
     
     <div id="nb_selector">
-        <p>Choose any of the given Catchments in order to view its balances.Please make sure, at least one 
-        resources set as well as at least one demand scenario is linked to this Catchment.</p><br/>
+        <!--<p>Choose any of the given Catchments in order to view its balances.Please make sure, at least one 
+        resources set as well as at least one demand scenario is linked to this Catchment.</p>-->
         {define_slot name="nb_selector"}{/define_slot}
     </div>
     <div class="default_balance">
