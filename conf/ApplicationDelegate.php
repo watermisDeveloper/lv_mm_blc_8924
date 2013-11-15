@@ -131,6 +131,9 @@ class conf_ApplicationDelegate {
     /**
      * insert the popup link and content into the page as the popup folder 
      * contained a popup named after the actual table or a given -popup name.
+     * 
+     * @version 1.0
+     * @author Mirko Maelicke <mirko@maelicke-online.de>
      */
     function block__popup_link(){
         if (isset($_GET['-popup'])){
@@ -149,6 +152,19 @@ class conf_ApplicationDelegate {
                     "<span style='margin-left: 1em;'>Help for this Page</span></a>";                          
         }
     }
+    
+        /**
+     * Versioning number is is included into fineprint
+     * 
+     * @version 1.0
+     * @author Mirko Maelicke <mirko@maelicke-online.de>
+     */
+    function block__version(){
+        $version = file_get_contents("version.txt");
+        
+        echo $version;
+    }
+
     
 }
 
