@@ -146,8 +146,8 @@ class conf_ApplicationDelegate {
             $filename = 'blc_startpage.html';
         }
         if (file_exists("popup/".$filename)){
-            $content = htmlentities(str_replace("\"", "'",file_get_contents("popup/".$filename)), ENT_QUOTES);
-            echo "<a href='javascript:popup(\"$content\");' style='float:left; margin-left: 1em'>".
+#            $content = htmlentities(str_replace("\"", "'",file_get_contents("popup/".$filename)), ENT_QUOTES);
+            echo "<a href='popup/$filename' target='_blank' style='float:left; margin-left: 1em'>".
                     "<img src='images/s_help.png' alt='help' width='24' height='24'/>".
                     "<span style='margin-left: 1em;'>Help for this Page</span></a>";                          
         }
